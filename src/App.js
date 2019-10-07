@@ -1,22 +1,28 @@
 import React from 'react';
 import './App.css';
-//import {ArticlesHandler} from './serviceAPI'; //krashar vid import - förstår inte react tillräckligt
 
-function App() {
-	return (
-		<div className="container">
-			<div className="row">
-				<h1>Articles</h1>
-				<div className="articles">
-					<div className="article-body">
-						<h5 className="article-title">Title</h5>
-						<p className="article-description">description</p>
-						<div className="article-author">~author</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+//Pages
+import {Articles} from './pages/articles'
+import {ReadArticle} from './pages/readArticle'
+import {CreateEditArticle} from './pages/createEditArticle'
+
+import {BrowserRouter, Route} from 'react-router-dom';
+
+class App extends React.Component {
+	render(){
+		return (
+			<BrowserRouter>
+				<Route exact={true} path='/' render={() => (
+					<Articles />
+				)}/>
+				<Route exact={true} path='/ReadArticle' component={ReadArticle} />
+				<Route exact={true} path='/EditArticle' component={CreateEditArticle} />
+				<Route exact={true} path='/CreateArticle' render={() => (
+					<CreateEditArticle />
+				)}/>
+			</BrowserRouter>
+		);
+	}
 }
 
 export default App;
